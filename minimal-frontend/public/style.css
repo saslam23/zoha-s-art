@@ -1,0 +1,107 @@
+body { 
+    background:url(public/assets/beige.jpg) no-repeat center center fixed; 
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    padding:1rem 0 0 2rem;
+  }
+  
+.menu{
+    position:fixed;
+    display:flex;
+    justify-content: center;
+    align-items:center;
+    width:30px;
+    height:60px;
+}
+.menu-icon{
+    background:black;
+    width:40px;
+    height:3px;
+    transition:all .5s ease-in-out;
+}
+
+.menu-icon::before,
+.menu-icon::after{
+    content:'';
+    position:absolute;
+    width:40px;
+    height:3px;
+    background:black;
+    transition:all .5s ease-in-out;
+}
+
+.menu-icon::before{
+    transform:translateY(-16px)
+}
+
+.menu-icon::after{
+    transform:translateY(16px)
+}
+
+/* MENU ANIMATION */
+.menu.open .menu-icon{
+    transform:translate(-50px);
+    background:transparent;
+
+}
+
+.menu.open .menu-icon::before{
+    transform:rotate(45deg) translate(35px, -35px)
+}
+
+.menu.open .menu-icon::after{
+    transform:rotate(-45deg) translate(35px, 35px)
+}
+
+/* NAVBAR LINKS */
+
+.navbar{
+    position: absolute;
+    top:50%;
+    left:-9%;
+    display:flex;
+    justify-content: center;
+    align-items:center;
+    z-index:999;
+    transition: all 0.5s ease-in-out;
+    transform:rotate(270deg);
+}
+
+li{
+    padding-left:15px;
+    font-size:16pt;
+    list-style: none;
+    display:inline-block;
+    color:black;
+}
+
+.nav-link{
+    padding-left:15px;
+    font-size:16pt;
+    list-style: none;
+    display:inline-block;
+    color:black;
+    transform: translateY(4.5rem);
+}
+
+.title{
+font-size:8em;
+padding-top:20rem;
+font-family: 'Comfortaa', cursive
+}
+
+.rectangle{
+    box-shadow: rgb(128, 128, 128) 3px 1px 10px;
+    background-color: #fffdfd;
+    height:auto;
+    width:500px;
+}
+
+
+/*ART WORK PAGES GENERAL*/
+
+.page-container-control{
+    padding:15rem;
+}

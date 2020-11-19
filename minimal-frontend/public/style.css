@@ -69,13 +69,6 @@ body {
     transform:rotate(270deg);
 }
 
-li{
-    padding-left:15px;
-    font-size:16pt;
-    list-style: none;
-    display:inline-block;
-    color:black;
-}
 
 .nav-link{
     padding-left:15px;
@@ -104,4 +97,128 @@ font-family: 'Comfortaa', cursive
 
 .page-container-control{
     padding:15rem;
+}
+
+/*ART WORK LIST PAGE(where you look at all the paintings)*/
+
+.art-work-name{
+    color: black;
+    text-decoration:none;
+    font-size: 1rem;
+}
+
+.art-work-name:hover{
+    text-decoration:none;
+    color:rgb(181, 116, 127);
+}
+
+.art-work-image{
+    opacity:1;
+}
+
+.art-work-image:hover{
+    opacity: .5;
+    transition: all .3s ease-in-out;
+    box-shadow: 2px 2px #222121;
+}
+
+.art-work-size{
+    font-size: 1rem;
+    color:black;
+}
+
+.art-work-price{
+    color:black;
+    font-size:1.5rem;
+}
+
+/*BUTTON*/
+.add-to-cart-button{
+    background-color:white;
+    border-color: #222121;
+    width:10rem;
+    height:3rem;
+    border-radius: 2px;
+    border-width: 3px;
+    color:#0f0f0f;
+    font-size: 1.2rem;
+}
+
+.add-to-cart-button:hover{
+    width:9rem;
+    height:2.5rem;
+    font-size: 1.1rem;
+    transition: all .2s ease-in-out;
+}
+
+.art-back-link{
+    text-decoration: none;
+    color:#0f0f0f;
+    font-size: 2.5rem;
+}
+
+.art-back-link:hover{
+    text-decoration:none;
+    color: rgb(136, 133, 133);
+    transition: all .2s ease-in-out;
+}
+
+
+.details-screen-image{
+    height: 450px;
+    width:450px;
+}
+
+/*IN STOCK STATUS*/
+.in-stock{
+    color: green;
+    font-size: 1.3rem;
+}
+
+.not-in-stock{
+    color: red;
+    font-size: 1.3rem;
+}
+
+/* CART*/
+
+li{
+    display:block;
+    flex-direction: row;
+}
+
+.art-work-cart-image{
+    height: 150px;
+    width:150px;
+}
+
+.proceed-to-checkout-box{
+    border: black solid 1px;
+    height: 100%;
+    width:100%;
+}
+
+.checkout-button{
+    position: absolute;
+    bottom:2%;
+    margin-left:1.5rem;
+    background-color:white;
+    border-color: #222121;
+    width:65%;
+    height:3rem;
+    border-radius: 2px;
+    border-width: 2px;
+    color:#0f0f0f;
+    font-size: .8rem;
+}
+.checkout-button:hover{
+    opacity: .6;
+    transition: all .1s ease-in-out;
+}
+.checkout-button:disabled{
+    opacity:.3;
+    bottom:3%;
+}
+.subtotal{
+    padding: 1rem;
 }

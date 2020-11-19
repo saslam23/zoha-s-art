@@ -1,0 +1,30 @@
+{
+  "name": "minimal-site",
+  "version": "1.0.0",
+  "description": "This is a ecommerce featured site designed for Zoha to display her art work as well as her other hobbies and interests.",
+  "main": "server.js",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "mongoose": "^5.10.11",
+    "nodemon": "^2.0.6",
+    "react-bootstrap": "^1.4.0",
+    "react-router-dom": "^5.2.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/saslam23/zoha-s-art.git"
+  },
+  "author": "Saad Aslam",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/saslam23/zoha-s-art/issues"
+  },
+  "homepage": "https://github.com/saslam23/zoha-s-art#readme"
+}

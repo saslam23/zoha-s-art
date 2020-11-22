@@ -222,3 +222,44 @@ li{
 .subtotal{
     padding: 1rem;
 }
+
+/*AUTHENTICATION*/
+.form{
+    margin:auto;
+    width:475px;
+    height:auto;
+    padding:65px;
+    border:solid 1px black;
+    border-radius: 5px;
+}
+
+.input-with-icon{
+    position:relative;
+}
+
+.input-with-icon i{
+    position:absolute;
+    left:3%;
+    bottom:14%;
+}
+
+.input-with-icon input[type=email]{
+    padding-left: 2rem;
+}
+
+.input-with-icon input[type=password]{
+    padding-left: 2rem;
+}
+
+/*PRODUCT MANAGEMENT*/
+.create-product-button{
+    background-color:white;
+    border-color: #222121;
+    width:10rem;
+    height:3rem;
+    border-radius: 2px;
+    border-width: 3px;
+    color:#0f0f0f;
+    font-size: 1.2rem;
+    margin-right: 3px;
+}

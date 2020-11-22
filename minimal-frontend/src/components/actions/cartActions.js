@@ -22,7 +22,7 @@ const addToCart = (productId, qty) => async(dispatch, getState) =>{
     } catch (error) {
         
     }
-}
+};
 
 const deleteFromCart = (productId) => async(dispatch, getState) =>{
 
@@ -31,6 +31,6 @@ const deleteFromCart = (productId) => async(dispatch, getState) =>{
     const {cart: {cartItems}} = getState();
     Cookie.set('cartItems', JSON.stringify(cartItems));
 
-}
+};
 
 export{addToCart, deleteFromCart};

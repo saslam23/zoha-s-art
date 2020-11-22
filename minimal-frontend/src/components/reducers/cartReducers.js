@@ -1,4 +1,4 @@
-const { ADD_CART_ITEM, DELETE_FROM_CART } = require("../constants/cartConstants");
+import { ADD_CART_ITEM, DELETE_FROM_CART } from "../constants/cartConstants";
 
 function cartReducer(state = {cartItems:[]}, action){
     switch(action.type){

@@ -20,6 +20,10 @@ export default function ArtWorkCartScreen(props) {
         }
     }, [qty])
 
+    const checkoutHandler = () =>{
+        props.history.push("/signin?redirect=shipping")
+    }
+
     return (
         <div className="page-container-control">
             <Container fluid>
@@ -63,7 +67,7 @@ export default function ArtWorkCartScreen(props) {
                  prev + (cur.price * cur.qty)
                 , 0)}</h4>
                 
-                <button disabled={cartItems.length === 0} className="checkout-button">Checkout</button>
+                <button onClick={checkoutHandler} disabled={cartItems.length === 0} className="checkout-button">Checkout</button>
             </div>
             </Col>
             </Row>

@@ -1,6 +1,7 @@
 const express = require('express');
 const Product = require('../models/productModel');
-const router = express.Router()
+const router = express.Router();
+const {isAuth, isAdmin} = require('../util');
 
 router.get('/', async (req, res) =>{
         const products = await Product.find({})
@@ -24,7 +25,7 @@ router.get('/:id', async (req,res) =>{
 })
 
 
-router.post('/create', (req,res) =>{
+router.post('/create', isAuth, isAdmin, (req,res) =>{
 
         const product = new Product({
             name: req.body.name,

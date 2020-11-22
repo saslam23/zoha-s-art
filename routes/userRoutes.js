@@ -27,7 +27,6 @@ router.post('/signin', async(req, res)=>{
     });
 
     const token = getToken(signedinUser);
-    console.log(token);
     if(signedinUser){
         res.status(200).json({
             name: signedinUser.name,

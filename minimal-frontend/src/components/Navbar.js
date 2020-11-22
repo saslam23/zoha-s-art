@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import {Link} from 'react-router-dom';
+import Cookie from 'js-cookie';
 
 export default class Navbar extends Component {
     constructor(props) {
@@ -24,6 +25,15 @@ export default class Navbar extends Component {
         }
     }
 
+    logoutHandler = () => { 
+        Cookie.remove("userInfo")
+        window.location = '/';
+    }
+
+    loginHandler = () =>{
+        window.location = '/signin';
+    }
+
 
     render() {
         return (
@@ -39,6 +49,8 @@ export default class Navbar extends Component {
                             <Link className="nav-link" to="/art">Art</Link>
                             <Link className="nav-link" to="/about">About</Link>
                         </ul>
+                        <button onClick ={this.loginHandler}>Login</button>
+                        <button onClick ={this.logoutHandler}>Logout</button>
                     </nav>
                 )
                 }

@@ -8,25 +8,41 @@ import {
     PRODUCT_DETAIL_SUCCESS, 
     PRODUCT_LIST_FAIL, 
     PRODUCT_LIST_REQUEST, 
-    PRODUCT_LIST_SUCCESS } from '../constants/productConstants';
+    PRODUCT_LIST_SUCCESS, 
+    REMOVE_PRODUCT_FAIL, 
+    REMOVE_PRODUCT_REQUEST,
+    REMOVE_PRODUCT_SUCCESS} from '../constants/productConstants';
 
 
-const createProduct = (name, image, price, size, description, countInStock) => async (dispatch, getState) =>{ 
+const createProduct = (product) => async (dispatch, getState) =>{ 
     try {
-        dispatch({type: CREATE_PRODUCT_REQUEST, payload:{name, image, price, size, description, countInStock}});
+        dispatch({type: CREATE_PRODUCT_REQUEST, payload:{product}});
     const {signin: {userInfo}}= getState();
-    const {data} = await axios.post('http://localhost:8000/api/products/create', {name, image, price, size, description, countInStock},{
+
+
+    if(!product._id){
+    const {data} = await axios.post('http://localhost:8000/api/products/create', product,{
     headers: {
-        authorization: 'Bearer ' + userInfo.token
+        Authorization: 'Bearer ' + userInfo.token
     }
     });
     dispatch({type: CREATE_PRODUCT_SUCCESS, payload: data});
+} else{
+
+    const {data} = await axios.put('http://localhost:8000/api/products/' + product._id, product,{
+        headers: {
+            Authorization: 'Bearer ' + userInfo.token
+        }
+        });
+        dispatch({type: CREATE_PRODUCT_SUCCESS, payload: data});
+}
         
     } catch (error) {
         dispatch({type:CREATE_PRODUCT_FAIL, payload: error.message});
         
     }
 };
+
 
 const listProducts = () => async (dispatch) =>{
 try {
@@ -49,4 +65,17 @@ try {
     dispatch({typs: PRODUCT_DETAIL_FAIL, payload: error.message});
 }
 };
-export {listProducts, detailProduct, createProduct};
+
+
+const deleteProduct = (id) => async (dispatch) => {
+
+    try {
+        dispatch({type: REMOVE_PRODUCT_REQUEST, payload: id});
+        const {data} = await axios.delete('http://localhost:8000/api/products/' + id);
+        dispatch({type: REMOVE_PRODUCT_SUCCESS, payload: data});
+
+    } catch (error) {
+        dispatch({type: REMOVE_PRODUCT_FAIL});
+    }
+};
+export {listProducts, detailProduct, createProduct, deleteProduct};

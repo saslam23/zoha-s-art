@@ -1,4 +1,4 @@
-import { ADD_CART_ITEM, DELETE_FROM_CART } from "../constants/cartConstants";
+import { ADD_CART_ITEM, DELETE_FROM_CART, SAVE_SHIPPING_SUCCESS } from "../constants/cartConstants";
 
 function cartReducer(state = {cartItems:[]}, action){
     switch(action.type){
@@ -12,8 +12,10 @@ function cartReducer(state = {cartItems:[]}, action){
              };
          }
          return {cartItems: [...state.cartItems, retrievedProduct]}; //meaning if the id doesn't match any already items in array  we will add the payload to array
+        case SAVE_SHIPPING_SUCCESS:
+         return {...state, shipping: action.payload}
         case DELETE_FROM_CART:
-            return {cartItems: state.cartItems.map(x =>x.id !== action.payload)}
+            return {cartItems: state.cartItems.filter(x => x.id !== action.payload)};
          default: return state;
     }
 }

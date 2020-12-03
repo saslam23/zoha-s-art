@@ -1,7 +1,12 @@
 import React, { useEffect } from 'react'
 import { Container, Row, Col } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
-import { addToCart } from '../actions/cartActions';
+import { addToCart, deleteFromCart } from '../actions/cartActions';
+import StripeCheckout from 'react-stripe-checkout';
+import axios from 'axios';
+import {toast} from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+toast.configure();
 
 export default function ArtWorkCartScreen(props) {
     const productId = props.match.params.id;
@@ -9,6 +14,10 @@ export default function ArtWorkCartScreen(props) {
     const cart = useSelector(state => state.cart);
     const {cartItems} = cart;
     const dispatch = useDispatch();
+    const quantity = cartItems.map(item => item.qty);
+    const totalAmount = cartItems.reduce((prev, cur)=>
+    prev + (cur.price * cur.qty)
+   , 0);
 
     useEffect(() => {
         if(productId){
@@ -20,8 +29,30 @@ export default function ArtWorkCartScreen(props) {
         }
     }, [qty])
 
-    const checkoutHandler = () =>{
-        props.history.push("/signin?redirect=shipping")
+
+    const deleteFromCartHandler = (productId) =>{
+        dispatch(deleteFromCart(productId));
+    }
+
+     const checkoutHandler = async (token) =>{
+         const items = cartItems.map(item => item.name);
+       const response = await axios.post('http://localhost:8000/api/stripe/checkout', 
+        {
+            token,
+            items,
+            totalAmount,
+        });
+        console.log(quantity);
+        const {status} = response.data
+
+        if(status === 'success'){
+        toast('Transaction successful!', {type:'success'});
+
+    } else{
+            toast('Transaction Failed', {type:'error'});
+    }
+
+        
     }
 
     return (
@@ -40,7 +71,7 @@ export default function ArtWorkCartScreen(props) {
                     <Col>
                     <li><img className="art-work-cart-image" src={item.image} alt="art_work_cart_image"/></li>
                     </Col>
-                    <Col>
+                    <Col >
                     <li><strong>{item.name}</strong></li>
                     <select value={item.qty} onChange={(e)=>  
                         dispatch(addToCart(item.id, e.target.value))
@@ -49,8 +80,9 @@ export default function ArtWorkCartScreen(props) {
                         {[...Array(item.countInStock).keys()].map(item =>
                             <option key={item + 1} value={item + 1}>{item + 1}</option>
                             )}
-
                     </select>
+                    <br></br>
+                    <button onClick = {() => deleteFromCartHandler(item.id)} className="cart-delete-button">delete</button>
                     
                     </Col>
                     <li style={{paddingRight:'15px'}}><strong>${item.price}</strong></li>  
@@ -67,7 +99,17 @@ export default function ArtWorkCartScreen(props) {
                  prev + (cur.price * cur.qty)
                 , 0)}</h4>
                 
-                <button onClick={checkoutHandler} disabled={cartItems.length === 0} className="checkout-button">Checkout</button>
+                <StripeCheckout
+                    stripeKey="pk_test_51HtQ39EHq6DErrpIg5lJPqB6mAOce5KlwUXikXyJcHsszyQ7rdHRr03txC49URpmLHJfqgAm1fdYWvFp41l3bujC00DJn6e6dU"
+                    token={checkoutHandler}
+                    shippingAddress
+                    billingAddress
+                    amount = {totalAmount * 100}
+                    quantity = {quantity}
+                >
+                <button disabled={cartItems.length === 0} className="checkout-button">Checkout</button>
+                </StripeCheckout>
+              
             </div>
             </Col>
             </Row>

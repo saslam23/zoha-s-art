@@ -49,8 +49,8 @@ export default class Navbar extends Component {
                             <Link className="nav-link" to="/art">Art</Link>
                             <Link className="nav-link" to="/about">About</Link>
                         </ul>
-                        <button onClick ={this.loginHandler}>Login</button>
-                        <button onClick ={this.logoutHandler}>Logout</button>
+                        <button style={{marginRight:'5px'}} className="actions-button" onClick ={this.loginHandler}>Login</button>
+                        <button className="actions-button" onClick ={this.logoutHandler}>Logout</button>
                     </nav>
                 )
                 }

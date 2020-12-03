@@ -263,3 +263,19 @@ li{
     font-size: 1.2rem;
     margin-right: 3px;
 }
+
+.actions-button{
+    background-color: white;
+    border-color: #222121;
+}
+
+
+.cart-delete-button{
+    background-color: white;
+    border-color: #222121;
+    margin-top:4px;
+}
+
+.stripe-button-el{
+   display:none;
+}

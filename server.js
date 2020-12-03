@@ -34,8 +34,10 @@ mongoose.connect('mongodb://localhost:27017/zohasartDB', {useNewUrlParser:true, 
 
 const productRouter = require('./routes/productRoutes');
 const userRouter = require('./routes/userRoutes');
+const stripeRouter = require('./routes/stripeCheckout');
 app.use('/api/products', productRouter);
 app.use('/api/user', userRouter);
+app.use('/api/stripe', stripeRouter);
 
 
 

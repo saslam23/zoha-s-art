@@ -25,7 +25,7 @@ router.get('/:id', async (req,res) =>{
 })
 
 
-router.post('/create', isAuth, isAdmin, (req,res) =>{
+router.post('/create',(req,res) =>{
 
         const product = new Product({
             name: req.body.name,
@@ -45,4 +45,37 @@ router.post('/create', isAuth, isAdmin, (req,res) =>{
 
 })
 
+router.put('/:id', async (req,res) =>{
+    const productId = req.params.id;
+    const product = await Product.findById(productId)
+    if(product){
+        product.name = req.body.name;
+        product.size = req.body.size;
+        product.price = req.body.price;
+        product.image = req.body.image;
+        product.description = req.body.description;
+        product.countInStock = req.body.countInStock;
+    }
+
+    const editedProduct= product.save();
+    if(editedProduct) {
+        return res.status(201).json({message: 'Product has been edited successfully!'})
+    }
+    return res.status(500).json({message: 'Something went wrong. The product was not created'})
+    
+
+})
+
+
+router.delete('/:id', async (req, res) =>{
+    const productId = req.params.id;
+
+    const product = await Product.findById(productId);
+
+    if(product){
+        await product.remove();
+       return res.status(200).json({data: product, message:'product successfully deleted'})
+    }
+    return res.status(404).json({message: 'Could not delete producta'})
+})
 module.exports = router;

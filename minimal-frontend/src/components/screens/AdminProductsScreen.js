@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import {Form, Table} from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import { createProduct, listProducts, deleteProduct } from '../actions/productActions';
+import Cookie from 'js-cookie';
 
 
 
@@ -32,6 +33,13 @@ export default function AdminProductsScreen(props) {
            
         }
     }, [])
+
+
+   const logoutHandler = () => { 
+        Cookie.remove("userInfo")
+        window.location = '/';
+    }
+
 
     const editProduct = (product) =>{
         setModaleVisible(true);
@@ -98,6 +106,7 @@ export default function AdminProductsScreen(props) {
                 </div>:
                 <div>
                 <button style={{marginBottom: '4px'}} className="create-product-button" onClick = {() => setModaleVisible(true)}>Create Product</button>
+                <button className="create-product-button" onClick={logoutHandler}>Logout</button>
                 <Table striped bordered hover>
                     <thead>
                         <tr>

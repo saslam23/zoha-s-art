@@ -8,6 +8,7 @@ import ArtWorkDetailsScreen from './components/screens/ArtWorkDetailsScreen';
 import ArtWorkCartScreen from './components/screens/ArtWorkCartScreen';
 import SigninScreen from './components/screens/authentication/SigninScreen';
 import AdminProductsScreen from './components/screens/AdminProductsScreen';
+import SuccessScreen from './components/screens/SuccessScreen';
 
 
 
@@ -26,6 +27,7 @@ function App() {
       <Route path="/cart/:id?" component={ArtWorkCartScreen}/>
       <Route path="/signin" component={SigninScreen}/>
       <Route path="/admin" component={AdminProductsScreen}/>
+      <Route path="/success" component={SuccessScreen}/>
       </Router>
 
     </div>

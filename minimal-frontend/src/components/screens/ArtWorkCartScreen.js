@@ -14,7 +14,6 @@ export default function ArtWorkCartScreen(props) {
     const cart = useSelector(state => state.cart);
     const {cartItems} = cart;
     const dispatch = useDispatch();
-    const quantity = cartItems.map(item => item.qty);
     const totalAmount = cartItems.reduce((prev, cur)=>
     prev + (cur.price * cur.qty)
    , 0);
@@ -36,17 +35,20 @@ export default function ArtWorkCartScreen(props) {
 
      const checkoutHandler = async (token) =>{
          const items = cartItems.map(item => item.name);
+         const quantity = cartItems.map(item => item.qty);
        const response = await axios.post('http://localhost:8000/api/stripe/checkout', 
         {
             token,
             items,
             totalAmount,
+            quantity
         });
         console.log(quantity);
         const {status} = response.data
 
         if(status === 'success'){
         toast('Transaction successful!', {type:'success'});
+        props.history.push('/success');
 
     } else{
             toast('Transaction Failed', {type:'error'});
@@ -105,7 +107,6 @@ export default function ArtWorkCartScreen(props) {
                     shippingAddress
                     billingAddress
                     amount = {totalAmount * 100}
-                    quantity = {quantity}
                 >
                 <button disabled={cartItems.length === 0} className="checkout-button">Checkout</button>
                 </StripeCheckout>

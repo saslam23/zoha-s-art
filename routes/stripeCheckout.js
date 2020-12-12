@@ -6,7 +6,7 @@ const { v4: uuidv4 } = require('uuid');
 router.post('/checkout', async (req, res) =>{
 
 try {
-    const {items, token, totalAmount} = req.body
+    const {items, token, totalAmount, quantity} = req.body
 
 
     const customer = await 
@@ -24,8 +24,7 @@ try {
         customer:customer.id,
         currency: 'usd',
         receipt_email: token.email,
-        description: `products purchase: ${items}`,
-        quantity: token.quantity,
+        description: `products purchase: ${items}, Quantity(respectively): ${quantity}`,
         shipping:{
             name: token.card.name,
             address:{

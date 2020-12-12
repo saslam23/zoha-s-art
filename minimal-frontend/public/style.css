@@ -136,7 +136,7 @@ font-family: 'Comfortaa', cursive
 .add-to-cart-button{
     background-color:white;
     border-color: #222121;
-    width:10rem;
+    width:auto;
     height:3rem;
     border-radius: 2px;
     border-width: 3px;
@@ -145,9 +145,8 @@ font-family: 'Comfortaa', cursive
 }
 
 .add-to-cart-button:hover{
-    width:9rem;
     height:2.5rem;
-    font-size: 1.1rem;
+    font-size: 1rem;
     transition: all .2s ease-in-out;
 }
 

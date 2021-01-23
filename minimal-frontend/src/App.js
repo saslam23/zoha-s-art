@@ -1,13 +1,15 @@
 import React from 'react';
 import Navbar from "./components/Navbar";
 import Home from './components/screens/HomeScreen';
-import About from "./components/About.component";
+import About from "./components/About";
 import{BrowserRouter as Router, Route} from "react-router-dom";
 import ArtWorkScreen from './components/screens/ArtWorkScreen';
 import ArtWorkDetailsScreen from './components/screens/ArtWorkDetailsScreen';
 import ArtWorkCartScreen from './components/screens/ArtWorkCartScreen';
 import SigninScreen from './components/screens/authentication/SigninScreen';
 import AdminProductsScreen from './components/screens/AdminProductsScreen';
+import SuccessScreen from './components/screens/SuccessScreen';
+import PhotographyScreen from './components/screens/PhotographyScreen';
 
 
 
@@ -26,6 +28,8 @@ function App() {
       <Route path="/cart/:id?" component={ArtWorkCartScreen}/>
       <Route path="/signin" component={SigninScreen}/>
       <Route path="/admin" component={AdminProductsScreen}/>
+      <Route path="/success" component={SuccessScreen}/>
+      <Route path="/photography" component={PhotographyScreen}/>
       </Router>
 
     </div>

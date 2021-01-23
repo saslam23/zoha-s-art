@@ -1,54 +1,29 @@
-import React, { Component } from 'react'
-import {Link} from 'react-router-dom';
-import Cookie from 'js-cookie';
+import React,{useState} from 'react'
+import { Link } from 'react-router-dom';
 
-export default class Navbar extends Component {
-    constructor(props) {
-        super(props)
+export default function Navbar() {
+const [toggle, setToggle] = useState(false);
 
-        this.state = {
-            on: false
-        }
-    }
 
-    onClickMenu = () => {
-        this.setState({
-            on: !this.state.on
-        })
-
-        const menu = document.querySelector('.menu')
-
-        if (!this.state.on) {
-            menu.classList.add('open')
-        } else {
-            menu.classList.remove('open');
-        }
-    }
-
-  
-
-    render() {
-        return (
-            <div >
-                <div className="menu" onClick={this.onClickMenu}>
-                    <div className="menu-icon"></div>
-                </div>
-
-                {this.state.on && (
-                    <nav className="navbar">
-                        <ul>
-                            <Link className="nav-link" to="/">Home</Link>
-                            <Link className="nav-link" to="/art">Art</Link>
-                            <Link className="nav-link" to="/about">About</Link>
-                        </ul>
-                     
-                    </nav>
-                )
-                }
+    return (
+        <div>
+            <div onClick = {() => setToggle(!toggle)} className={`menu ${toggle ? "open" : "original"}`}>
+                <div className="menu-icon"></div>
             </div>
-        )
-    }
-
+            <div>
+                <Link to="/cart"><img className="bag" src="/assets/bag.png" alt="bag"/></Link>
+            </div>
+            <nav>
+                <ul className="navbar">
+                    <li><Link className={`nav-link ${toggle ? 'open' : ''}`}to="/">Home</Link></li>
+                    <li><Link className={`nav-link ${toggle ? 'open' : ''}`}to="/art">Art</Link></li>
+                    <li><Link className={`nav-link ${toggle ? 'open' : ''}`}to="/about">About</Link></li>
+                    <li><Link className={`nav-link ${toggle ? 'open' : ''}`}to="/photography">Photography</Link></li>
+                </ul>
+            </nav>
+        </div>
+    )
 }
+
 
 

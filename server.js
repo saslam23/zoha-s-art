@@ -1,14 +1,15 @@
 require('dotenv').config({path: '.env'});
 const express = require('express');
+const fileUpload = require('express-fileupload');
 const cors = require('cors');
 
 
 const mongoose = require('mongoose');
 
 const app = express();
-
 app.use(express.json());
 app.use(cors());
+app.use(fileUpload());
 
 const PORT = process.env.PORT || 8000;
 
@@ -35,9 +36,11 @@ mongoose.connect('mongodb://localhost:27017/zohasartDB', {useNewUrlParser:true, 
 const productRouter = require('./routes/productRoutes');
 const userRouter = require('./routes/userRoutes');
 const stripeRouter = require('./routes/stripeCheckout');
+const photoRouter = require('./routes/photoRoutes');
 app.use('/api/products', productRouter);
 app.use('/api/user', userRouter);
 app.use('/api/stripe', stripeRouter);
+app.use('/api/photos', photoRouter);
 
 
 

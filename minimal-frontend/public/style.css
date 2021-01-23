@@ -33,11 +33,11 @@ body {
 }
 
 .menu-icon::before{
-    transform:translateY(-16px)
+    transform:translateY(-16px);
 }
 
 .menu-icon::after{
-    transform:translateY(16px)
+    transform:translateY(16px);
 }
 
 /* MENU ANIMATION */
@@ -47,18 +47,40 @@ body {
 
 }
 
-.menu.open .menu-icon::before{
-    transform:rotate(45deg) translate(35px, -35px)
+.menu.open 
+.menu-icon::before{
+    transform:rotate(45deg) translate(35px, -35px);
 }
 
-.menu.open .menu-icon::after{
-    transform:rotate(-45deg) translate(35px, 35px)
+.menu.open 
+.menu-icon::after{
+    transform:rotate(-45deg) translate(35px, 35px);
+}
+
+.menu.original 
+.menu-icon{
+    transform: translate(0px);
+    transition: all .5s ease-in-out;
+}
+
+.menu.original 
+.menu-icon::before{
+    transform: rotate(0) translate(0px, 0px);
+    transition: all .5s ease-in-out;
+    transform:translateY(-16px);
+}
+
+.menu.original 
+.menu-icon::after{
+    transform:rotate(0) translate(0px, 0px);
+    transition: all .5s ease-in-out;
+    transform:translateY(16px);
 }
 
 /* NAVBAR LINKS */
 
 .navbar{
-    position: absolute;
+    position: fixed;
     top:50%;
     left:-9%;
     display:flex;
@@ -67,7 +89,9 @@ body {
     z-index:999;
     transition: all 0.5s ease-in-out;
     transform:rotate(270deg);
+    text-decoration:none;
 }
+
 
 
 .nav-link{
@@ -76,7 +100,20 @@ body {
     list-style: none;
     display:inline-block;
     color:black;
-    transform: translateY(4.5rem);
+    transform: translateY(-10rem);
+    transition: transform .5s ease-in-out;
+    overflow:hidden;
+    text-decoration: none;
+    
+}
+
+.nav-link:hover{
+    color:black;
+}
+
+.nav-link.open{
+ transform: translateY(4.5rem);
+ transition: all .5s ease-in-out;
 }
 
 .title{
@@ -92,11 +129,29 @@ font-family: 'Comfortaa', cursive
     width:500px;
 }
 
+.bag{
+    position: absolute;
+    top:4%;
+    right:12%;
+    height:50px;
+    width:50px;
+}
+
 
 /*ART WORK PAGES GENERAL*/
 
 .page-container-control{
     padding:15rem;
+   
+}
+
+.thank-you-page-container-control{
+    padding:5rem;
+}
+
+.photo-page-container-control{
+    padding: 15rem;
+    text-align: center;
 }
 
 /*ART WORK LIST PAGE(where you look at all the paintings)*/
@@ -136,7 +191,7 @@ font-family: 'Comfortaa', cursive
 .add-to-cart-button{
     background-color:white;
     border-color: #222121;
-    width:10rem;
+    width:auto;
     height:3rem;
     border-radius: 2px;
     border-width: 3px;
@@ -145,9 +200,8 @@ font-family: 'Comfortaa', cursive
 }
 
 .add-to-cart-button:hover{
-    width:9rem;
     height:2.5rem;
-    font-size: 1.1rem;
+    font-size: 1rem;
     transition: all .2s ease-in-out;
 }
 

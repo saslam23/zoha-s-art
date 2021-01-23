@@ -3,11 +3,19 @@ import {Form, Table} from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import { createProduct, listProducts, deleteProduct } from '../actions/productActions';
 import Cookie from 'js-cookie';
+import {uploadFileAction} from '../actions/uploadActions';
+import PhotosList from '../cards/PhotosList';
+
 
 
 
 export default function AdminProductsScreen(props) {
     const [modalVisible, setModaleVisible] = useState(false);
+    const [uploaderVisible, setUploaderVisible] = useState(false);
+    const [imagePath , setImagePath] = useState(null);
+    const [caption, setCaption] = useState('');
+    const [type, setType] = useState('');
+    const [altText, setAltText] = useState('');
     const [id, setId]= useState('');
     const [name, setName] = useState('');
     const [image, setImage] = useState('');
@@ -15,6 +23,7 @@ export default function AdminProductsScreen(props) {
     const [size, setSize] = useState('');
     const [description, setDescription] = useState('');
     const [countInStock, setCountInStock] = useState('');
+    const [date, setDate] = useState(new Date());
     const dispatch = useDispatch();
     const signin = useSelector(state => state.signin);
     const productList = useSelector(state => state.productList);
@@ -33,6 +42,7 @@ export default function AdminProductsScreen(props) {
            
         }
     }, [])
+
 
     const editProduct = (product) =>{
         setModaleVisible(true);
@@ -56,6 +66,24 @@ export default function AdminProductsScreen(props) {
         window.location = '/';
     }
 
+    const fileSelectedHandler = (e) =>{
+     setImagePath(e.target.files[0])
+    }
+
+
+    const postFileHandler = (e) =>{
+        e.preventDefault();
+        const formData = new FormData();
+        formData.append('photo', imagePath);
+        formData.append('caption', caption);
+        formData.append('type', type); //sending imagePath state as file to backend where req.files.photo can be used
+        formData.append('date', date);
+        formData.append('altText', altText);
+        dispatch(uploadFileAction(formData));
+        alert('post successfully added to your photography page, Zoha!')
+    }
+
+
     const createProductHandler = (e) =>{
         e.preventDefault();
        
@@ -69,9 +97,32 @@ export default function AdminProductsScreen(props) {
         <div className="page-container-control">
             { userInfo && userInfo.isAdmin ? 
             <div>
+                {uploaderVisible ?
+                           <Form onSubmit={postFileHandler}>
+                            <Form.Group className="input-with-icon"> 
+                               <Form.Label>About the photo</Form.Label> 
+                               <br></br>
+                               <textarea style={{width:'500px', height:'300px'}} name="caption" value={caption} placeholder="Enter caption" onChange={(e) => setCaption(e.target.value)} /> 
+                            </Form.Group>
+                            <Form.Group className="input-with-icon"> 
+                               <Form.Label>Image Orientation</Form.Label> 
+                               <Form.Control name="type" value={type} placeholder="Image will be on left or right? (type left or right)" onChange={(e) => setType(e.target.value)} /> 
+                            </Form.Group>
+                            <Form.Group className="input-with-icon">
+                               <Form.Label>Image</Form.Label>
+                                <Form.Control name="photo" type='file' onChange={fileSelectedHandler}/>
+                           </Form.Group>
+                           <Form.Group className="input-with-icon">
+                               <Form.Label>alt-text</Form.Label>
+                                <Form.Control name="altText" value={altText}  onChange={(e) =>setAltText(e.target.value)}/>
+                           </Form.Group>
+                           <button type="submit" value="upload" style={{marginBottom: '1rem'}} className="create-product-button">Create post</button>
+                           <button type="button" className="create-product-button" onClick={() => setUploaderVisible(false)}>Cancel</button>
+                           </Form>:''
+            }
                 {modalVisible ?
                 <div>
-                    <Form className="form" onSubmit = {createProductHandler}>
+                <Form className="form" onSubmit = {createProductHandler}>
                     <h2>{id ? 'Edit Product' : 'Create Product'}</h2>
                     <Form.Group className="input-with-icon">
                         <Form.Label>Name</Form.Label>            
@@ -101,11 +152,17 @@ export default function AdminProductsScreen(props) {
                         {id ? 'Update' : 'Create'}
                     </button>
                     <button type='button' className="create-product-button" onClick={() => window.location.reload()}>Cancel</button>
-                    </Form> 
-                </div>:
+                    </Form>              
+                </div>
+                
+                :
+
                 <div>
                 <button style={{marginBottom: '4px'}} className="create-product-button" onClick = {() => setModaleVisible(true)}>Create Product</button>
+                <button className="create-product-button" onClick = {() => setUploaderVisible(true)}>New post</button>
                 <button className="create-product-button"  onClick ={logoutHandler}>Logout</button>
+                
+
                 <Table striped bordered hover>
                     <thead>
                         <tr>
@@ -126,6 +183,7 @@ export default function AdminProductsScreen(props) {
                             )}
                             </tbody>
                 </Table>
+                <PhotosList/>
                 </div>
             }
         

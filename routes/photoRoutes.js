@@ -51,6 +51,56 @@ router.post('/upload', (req, res) =>{
     
 });
 
+router.put('/:id', async (req,res) =>{
+    const photoInfoId = req.params.id;
+    const photo = await Photo.findById(photoInfoId);
+    const file = req.files.pic;
+
+      if(!file.name === "hello"){
+
+        if(photo){
+            photo.image = image;
+            photo.caption= req.body.caption;
+            photo.type = req.body.type;
+            photo.date = req.body.date;
+            photo.altText = req.body.altText;
+        }
+    
+        const editedPhoto= photo.save();
+        if(editedPhoto) {
+            return res.status(201).json({message: 'Product has been edited successfully!'})
+        }
+        return res.status(500).json({message: 'Something went wrong. The product was not created'})
+    
+      }else{
+    file.mv(`${__dirname, './'}/minimal-frontend/public/assets/${file.name}`, err =>{
+        if(err){
+            console.error(err);
+            return res.status(500).json({msg:'image path not valid'});
+        }
+        const image = `/assets/${file.name}`;
+
+
+        if(photo){
+            photo.image = image;
+            photo.caption= req.body.caption;
+            photo.type = req.body.type;
+            photo.date = req.body.date;
+            photo.altText = req.body.altText;
+        }
+    
+        const editedPhoto= photo.save();
+        if(editedPhoto) {
+            return res.status(201).json({message: 'Product has been edited successfully!'})
+        }
+        return res.status(500).json({message: 'Something went wrong. The product was not created'})
+  
+
+  
+})}
+
+});
+
 router.delete('/:id', async (req,res) =>{
     const photoId = req.params.id;
 

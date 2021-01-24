@@ -10,16 +10,28 @@ import {
     UPLOAD_FILE_REQUEST, 
     UPLOAD_FILE_SUCCESS } from '../constants/uploadFileConstants';
 
-const uploadFileAction = (photoInfo) => async (dispatch) =>{
+const uploadFileAction = (photoInfo, photoId) => async (dispatch) =>{
     dispatch({type: UPLOAD_FILE_REQUEST, payload: {photoInfo}});
+    console.log(photoInfo.id)
     console.log(photoInfo)
     try {
-        const {data} = await axios.post('http://localhost:8000/api/photos/upload', photoInfo, {
-            headers: {
-                'Content-Type': 'multipart/form-data'
-            }
-        });
-        dispatch({type: UPLOAD_FILE_SUCCESS, payload: data});
+        if(!photoId._id) {
+            const {data} = await axios.post('http://localhost:8000/api/photos/upload', photoInfo, {
+                headers: {
+                    'Content-Type': 'multipart/form-data'
+                }
+            });
+            dispatch({type: UPLOAD_FILE_SUCCESS, payload: data});
+        } else{
+
+            const {data} = await axios.put('http://localhost:8000/api/photos/' + photoId._id, photoInfo, {
+                headers: {
+                    'Content-Type': 'multipart/form-data'
+                }
+            });
+            dispatch({type: UPLOAD_FILE_SUCCESS, payload: data});
+        }
+       
     } catch (error) {
         dispatch({type: UPLOAD_FILE_FAIL, payload: error.message});
     }

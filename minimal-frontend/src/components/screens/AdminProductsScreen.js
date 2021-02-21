@@ -130,6 +130,7 @@ export default function AdminProductsScreen(props) {
                         <th>Name</th>
                         <th>Size</th>
                         <th>Price</th>
+                        <th>Stock</th>
                         <th>Actions</th>
                         </tr>
                     </thead>
@@ -139,6 +140,7 @@ export default function AdminProductsScreen(props) {
                                 <td>{product.name}</td>
                                 <td>{product.size}</td>
                                 <td>{product.price}</td>
+                                <td>{product.countInStock}</td>
                                 <td><button className="actions-button" onClick={()=> editProduct(product)}>edit</button> | <button onClick ={() => deleteHandler( product._id)} className="actions-button">delete</button></td>
                             </tr>
                             )}

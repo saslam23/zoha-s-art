@@ -15,38 +15,40 @@ router.get('/upload', async (req, res) =>{
 router.post('/upload', (req, res) =>{
     if(req.files === null){
         res.status(400).json({msg: 'file not recognized'});
+    }else{
+
+        const file = req.files.pic;
+        const caption = req.body.caption;
+        const type = req.body.type;
+        const date = req.body.date;
+        const altText = req.body.altText;
+    
+        file.mv(`${__dirname, './'}/minimal-frontend/public/assets/${file.name}`, err =>{
+            if(err){
+                console.error(err);
+                return res.status(500).json({msg:'image path not valid'});
+            }
+            const image = `/assets/${file.name}`;
+          
+    
+            const newPhoto = new Photo ({
+            image,
+            caption,
+            type,
+            altText,
+            date
+    
+            });
+    
+            const photo = newPhoto.save();
+    
+            if(photo){
+                res.json({message: 'photo successfully uploaded!'})
+            }
+           
+        });
     }
 
-    const file = req.files.photo;
-    const caption = req.body.caption;
-    const type = req.body.type;
-    const date = req.body.date;
-    const altText = req.body.altText;
-
-    file.mv(`${__dirname, './'}/minimal-frontend/public/assets/${file.name}`, err =>{
-        if(err){
-            console.error(err);
-            return res.status(500).json({msg:'image path not valid'});
-        }
-        const image = `/assets/${file.name}`;
-      
-
-        const newPhoto = new Photo ({
-        image,
-        caption,
-        type,
-        altText,
-        date
-
-        });
-
-        const photo = newPhoto.save();
-
-        if(photo){
-            res.json({message: 'photo successfully uploaded!'})
-        }
-       
-    });
 
     
 });

@@ -12,26 +12,10 @@ app.use(cors());
 app.use(fileUpload());
 
 const PORT = process.env.PORT || 8000;
+const uri = process.env.DATABASE_URL;
 
 
-mongoose.connect('mongodb://localhost:27017/zohasartDB', {useNewUrlParser:true, useUnifiedTopology: true});
-
-/*app.post('/', (req, res) =>{
-    const product = new Product ({
-        name: req.body.name,
-        image: req.body.image,
-        size: req.body.size,
-        price: req.body.price
-    })
-    const newProduct = product.save();
-
-    if(newProduct){
-        res.sendStatus(200).send({message: 'product successfully saved!', data: newProduct});
-    } else{
-        res.status(500).json({message: 'something went wrong'});
-    }
-    
-})*/
+mongoose.connect(uri, {useNewUrlParser:true, useUnifiedTopology: true});
 
 const productRouter = require('./routes/productRoutes');
 const userRouter = require('./routes/userRoutes');
@@ -42,7 +26,15 @@ app.use('/api/user', userRouter);
 app.use('/api/stripe', stripeRouter);
 app.use('/api/photos', photoRouter);
 
-
+/*Serves the build folder that we had created */
+if (process.env.NODE_ENV === "production") {
+    app.use(express.static("minimal-frontend/build"));
+  
+    app.get("*", (req, res) => {
+      res.sendFile(path.join(__dirname, "minimal-frontend", "build", "index.html"))
+    })
+  }
+  
 
 app.listen(PORT, () =>{
 console.log(`Successfully running server on port ${PORT}`)

@@ -38,7 +38,7 @@ const dispatch = useDispatch()
     return (
             loading ? <div>Loading...</div> : error ? <div>{error}</div> :
                <div className="page-container-control">
-                   <h1 style={{textAlign:'center'}}>MY ART</h1>
+                   <h1 style={{textAlign:'center', paddingBottom:'7rem'}}>MY ART</h1>
              <Container fluid>
                  <Row>
                      {products.map(artWorkList)}

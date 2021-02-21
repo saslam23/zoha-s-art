@@ -21,7 +21,7 @@ router.post('/createadmin', async (req,res) =>{
     if(newUser){
      res.status(201).json({message: 'User successfully created!'})
     } else{
-        res.status(500).json({message:'User not created....wah wah wah...'})
+        res.status(500).json({message:'User not created...'})
     }
      
 })

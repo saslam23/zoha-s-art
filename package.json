@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "This is a ecommerce featured site designed for Zoha to display her art work as well as her other hobbies and interests.",
   "main": "server.js",
+  "build": "cd minimal-frontend && npm install && npm run build",
   "dependencies": {
     "bcrypt": "^5.0.0",
     "cors": "^2.8.5",

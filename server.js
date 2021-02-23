@@ -16,7 +16,7 @@ const PORT = process.env.PORT || 8000;
 const uri = process.env.DATABASE_URL;
 
 
-mongoose.connect("mongodb+srv://zohaAdmin:Hello001!@clusterzoha.jvg1j.mongodb.net/myFirstDatabase?retryWrites=true&w=majority", {useNewUrlParser:true, useUnifiedTopology: true});
+mongoose.connect(process.env.DATABASE_URL, {useNewUrlParser:true, useUnifiedTopology: true});
 
 const productRouter = require('./routes/productRoutes');
 const userRouter = require('./routes/userRoutes');

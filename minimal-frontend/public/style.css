@@ -1,0 +1,335 @@
+body { 
+    background:url(public/assets/beige.jpg) no-repeat center center fixed; 
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    padding:1rem 0 0 2rem;
+  }
+  
+.menu{
+    position:fixed;
+    display:flex;
+    justify-content: center;
+    align-items:center;
+    width:30px;
+    height:60px;
+}
+.menu-icon{
+    background:black;
+    width:40px;
+    height:3px;
+    transition:all .5s ease-in-out;
+}
+
+.menu-icon::before,
+.menu-icon::after{
+    content:'';
+    position:absolute;
+    width:40px;
+    height:3px;
+    background:black;
+    transition:all .5s ease-in-out;
+}
+
+.menu-icon::before{
+    transform:translateY(-16px);
+}
+
+.menu-icon::after{
+    transform:translateY(16px);
+}
+
+/* MENU ANIMATION */
+.menu.open .menu-icon{
+    transform:translate(-50px);
+    background:transparent;
+
+}
+
+.menu.open 
+.menu-icon::before{
+    transform:rotate(45deg) translate(35px, -35px);
+}
+
+.menu.open 
+.menu-icon::after{
+    transform:rotate(-45deg) translate(35px, 35px);
+}
+
+.menu.original 
+.menu-icon{
+    transform: translate(0px);
+    transition: all .5s ease-in-out;
+}
+
+.menu.original 
+.menu-icon::before{
+    transform: rotate(0) translate(0px, 0px);
+    transition: all .5s ease-in-out;
+    transform:translateY(-16px);
+}
+
+.menu.original 
+.menu-icon::after{
+    transform:rotate(0) translate(0px, 0px);
+    transition: all .5s ease-in-out;
+    transform:translateY(16px);
+}
+
+/* NAVBAR LINKS */
+
+.navbar{
+    position: fixed;
+    top:50%;
+    left:-9%;
+    display:flex;
+    justify-content: center;
+    align-items:center;
+    z-index:999;
+    transition: all 0.5s ease-in-out;
+    transform:rotate(270deg);
+    text-decoration:none;
+}
+
+
+
+.nav-link{
+    padding-left:15px;
+    font-size:16pt;
+    list-style: none;
+    display:inline-block;
+    color:black;
+    transform: translateY(-10rem);
+    transition: transform .5s ease-in-out;
+    overflow:hidden;
+    text-decoration: none;
+    
+}
+
+.nav-link:hover{
+    color:black;
+}
+
+.nav-link.open{
+ transform: translateY(4.5rem);
+ transition: all .5s ease-in-out;
+}
+
+.title{
+font-size:8em;
+padding-top:20rem;
+font-family: 'Comfortaa', cursive
+}
+
+.rectangle{
+    box-shadow: rgb(128, 128, 128) 3px 1px 10px;
+    background-color: #fffdfd;
+    height:auto;
+    width:500px;
+}
+
+.bag{
+    position: absolute;
+    top:4%;
+    right:12%;
+    height:50px;
+    width:50px;
+}
+
+
+/*ART WORK PAGES GENERAL*/
+
+.page-container-control{
+    padding:15rem;
+   
+}
+
+.thank-you-page-container-control{
+    padding:5rem;
+}
+
+.photo-page-container-control{
+    padding: 15rem;
+    text-align: center;
+}
+
+/*ART WORK LIST PAGE(where you look at all the paintings)*/
+
+.art-work-name{
+    color: black;
+    text-decoration:none;
+    font-size: 1rem;
+}
+
+.art-work-name:hover{
+    text-decoration:none;
+    color:rgb(181, 116, 127);
+}
+
+.art-work-image{
+    opacity:1;
+}
+
+.art-work-image:hover{
+    opacity: .5;
+    transition: all .3s ease-in-out;
+    box-shadow: 2px 2px #222121;
+}
+
+.art-work-size{
+    font-size: 1rem;
+    color:black;
+}
+
+.art-work-price{
+    color:black;
+    font-size:1.5rem;
+}
+
+/*BUTTON*/
+.add-to-cart-button{
+    background-color:white;
+    border-color: #222121;
+    width:auto;
+    height:3rem;
+    border-radius: 2px;
+    border-width: 3px;
+    color:#0f0f0f;
+    font-size: 1.2rem;
+}
+
+.add-to-cart-button:hover{
+    height:2.5rem;
+    font-size: 1rem;
+    transition: all .2s ease-in-out;
+}
+
+.art-back-link{
+    text-decoration: none;
+    color:#0f0f0f;
+    font-size: 2.5rem;
+}
+
+.art-back-link:hover{
+    text-decoration:none;
+    color: rgb(136, 133, 133);
+    transition: all .2s ease-in-out;
+}
+
+
+.details-screen-image{
+    height: 450px;
+    width:450px;
+}
+
+/*IN STOCK STATUS*/
+.in-stock{
+    color: green;
+    font-size: 1.3rem;
+}
+
+.not-in-stock{
+    color: red;
+    font-size: 1.3rem;
+}
+
+/* CART*/
+
+li{
+    display:block;
+    flex-direction: row;
+}
+
+.art-work-cart-image{
+    height: 150px;
+    width:150px;
+}
+
+.proceed-to-checkout-box{
+    border: black solid 1px;
+    height: 100%;
+    width:100%;
+}
+
+.checkout-button{
+    position: absolute;
+    bottom:2%;
+    margin-left:1.5rem;
+    background-color:white;
+    border-color: #222121;
+    width:65%;
+    height:3rem;
+    border-radius: 2px;
+    border-width: 2px;
+    color:#0f0f0f;
+    font-size: .8rem;
+}
+.checkout-button:hover{
+    opacity: .6;
+    transition: all .1s ease-in-out;
+}
+.checkout-button:disabled{
+    opacity:.3;
+    bottom:3%;
+}
+.subtotal{
+    padding: 1rem;
+}
+
+/*AUTHENTICATION*/
+.form{
+    margin:auto;
+    width:475px;
+    height:auto;
+    padding:65px;
+    border:solid 1px black;
+    border-radius: 5px;
+}
+
+.input-with-icon{
+    position:relative;
+}
+
+.input-with-icon i{
+    position:absolute;
+    left:3%;
+    bottom:14%;
+}
+
+.input-with-icon input[type=email]{
+    padding-left: 2rem;
+}
+
+.input-with-icon input[type=password]{
+    padding-left: 2rem;
+}
+
+/*PRODUCT MANAGEMENT*/
+.create-product-button{
+    background-color:white;
+    border-color: #222121;
+    width:10rem;
+    height:3rem;
+    border-radius: 2px;
+    border-width: 3px;
+    color:#0f0f0f;
+    font-size: 1.2rem;
+    margin-right: 3px;
+}
+
+.actions-button{
+    background-color: white;
+    border-color: #222121;
+}
+
+
+.cart-delete-button{
+    background-color: white;
+    border-color: #222121;
+    margin-top:4px;
+}
+
+.stripe-button-el{
+   display:none;
+}

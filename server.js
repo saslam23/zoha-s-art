@@ -15,7 +15,7 @@ const PORT = process.env.PORT || 8000;
 const uri = process.env.DATABASE_URL;
 
 
-mongoose.connect(uri, {useNewUrlParser:true, useUnifiedTopology: true});
+mongoose.connect("mongodb://localhost:27017/zohasartDB", {useNewUrlParser:true, useUnifiedTopology: true});
 
 const productRouter = require('./routes/productRoutes');
 const userRouter = require('./routes/userRoutes');

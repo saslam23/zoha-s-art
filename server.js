@@ -13,10 +13,9 @@ app.use(cors());
 app.use(fileUpload());
 
 const PORT = process.env.PORT || 8000;
-const uri = process.env.MONGODB_URI;
 
 
-mongoose.connect(uri, {useNewUrlParser:true, useUnifiedTopology: true});
+mongoose.connect(ATLAS_URI, {useNewUrlParser:true, useUnifiedTopology: true});
 
 const productRouter = require('./routes/productRoutes');
 const userRouter = require('./routes/userRoutes');

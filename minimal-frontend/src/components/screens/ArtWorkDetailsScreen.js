@@ -29,8 +29,8 @@ export default function ArtWorkDetailsScreen(props) {
             <div><img className="details-screen-image" src={product.image} alt="art_work_image"/></div>
             </Col>
             <Col> 
-            <h2>{product.name}</h2>
-            <p>{product.size}</p>
+            <h2 className="art-details-name">{product.name}</h2>
+            <p className="art-details-size">{product.size}</p>
             <p>${product.price}</p>
             <p>{product.countInStock > 0 ? <p className="in-stock">Available</p> : <p className="not-in-stock">Out of Stock</p>}</p>
             Qty: {''}
@@ -40,7 +40,7 @@ export default function ArtWorkDetailsScreen(props) {
                 {x+1}
             </option>)}
             </select>
-            <p>{product.description}</p>
+            <p className='product-description'>{product.description}</p>
             {product.countInStock > 0 && <button className="add-to-cart-button" onClick={cartButtonHandler}>Add to Cart</button>}
             
             </Col>

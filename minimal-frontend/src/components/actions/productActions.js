@@ -21,7 +21,7 @@ const createProduct = (product) => async (dispatch, getState) =>{
 
 
     if(!product._id){
-    const {data} = await axios.post('http://localhost:8000/api/products/create', product,{
+    const {data} = await axios.post('/api/products/create', product,{
     headers: {
         Authorization: 'Bearer ' + userInfo.token
     }
@@ -29,7 +29,7 @@ const createProduct = (product) => async (dispatch, getState) =>{
     dispatch({type: CREATE_PRODUCT_SUCCESS, payload: data});
 } else{
 
-    const {data} = await axios.put('http://localhost:8000/api/products/' + product._id, product,{
+    const {data} = await axios.put('/api/products/' + product._id, product,{
         headers: {
             Authorization: 'Bearer ' + userInfo.token
         }
@@ -48,7 +48,7 @@ const listProducts = () => async (dispatch) =>{
 try {
     dispatch({type:PRODUCT_LIST_REQUEST});
     
-    const {data} = await axios.get('http://localhost:8000/api/products/');
+    const {data} = await axios.get('/api/products/');
 
     dispatch({type: PRODUCT_LIST_SUCCESS, payload: data});
 } catch (error) {
@@ -59,7 +59,7 @@ try {
 const detailProduct = (id) => async (dispatch) =>{
 try {
     dispatch({type: PRODUCT_DETAIL_REQUEST, payload: id})
-    const {data} = await axios.get('http://localhost:8000/api/products/' + id);
+    const {data} = await axios.get('/api/products/' + id);
     dispatch({type: PRODUCT_DETAIL_SUCCESS, payload: data});
 } catch (error) {
     dispatch({typs: PRODUCT_DETAIL_FAIL, payload: error.message});
@@ -71,7 +71,7 @@ const deleteProduct = (id) => async (dispatch) => {
 
     try {
         dispatch({type: REMOVE_PRODUCT_REQUEST, payload: id});
-        const {data} = await axios.delete('http://localhost:8000/api/products/' + id);
+        const {data} = await axios.delete('/api/products/' + id);
         dispatch({type: REMOVE_PRODUCT_SUCCESS, payload: data});
 
     } catch (error) {

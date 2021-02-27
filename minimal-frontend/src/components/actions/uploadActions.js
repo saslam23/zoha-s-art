@@ -16,7 +16,7 @@ const uploadFileAction = (photoInfo, photoId) => async (dispatch) =>{
     console.log(photoInfo)
     try {
         if(!photoId._id) {
-            const {data} = await axios.post('http://localhost:8000/api/photos/upload', photoInfo, {
+            const {data} = await axios.post('/api/photos/upload', photoInfo, {
                 headers: {
                     'Content-Type': 'multipart/form-data'
                 }
@@ -24,7 +24,7 @@ const uploadFileAction = (photoInfo, photoId) => async (dispatch) =>{
             dispatch({type: UPLOAD_FILE_SUCCESS, payload: data});
         } else{
 
-            const {data} = await axios.put('http://localhost:8000/api/photos/' + photoId._id, photoInfo, {
+            const {data} = await axios.put('/api/photos/' + photoId._id, photoInfo, {
                 headers: {
                     'Content-Type': 'multipart/form-data'
                 }
@@ -40,7 +40,7 @@ const uploadFileAction = (photoInfo, photoId) => async (dispatch) =>{
 const getFileAction = () => async(dispatch) =>{
     try {
         dispatch({type: GET_FILE_REQUEST});
-        const {data} = await axios.get('http://localhost:8000/api/photos/upload');
+        const {data} = await axios.get('/api/photos/upload');
         dispatch({type: GET_FILE_SUCCESS, payload: data});
     } catch (error) {
         dispatch({type: GET_FILE_FAIL, payload: error.message});
@@ -50,7 +50,7 @@ const getFileAction = () => async(dispatch) =>{
 const deletePhoto = (id) => async (dispatch) =>{
     try {
         dispatch({type:REMOVE_FILE_REQUEST, payload: id});
-        const {data} = await axios.delete("http://localhost:8000/api/photos/" + id);
+        const {data} = await axios.delete("/api/photos/" + id);
         dispatch({type:REMOVE_FILE_SUCCESS, payload: data});
     } catch (error) {
         dispatch({type:REMOVE_FILE_FAIL, payload: error.message});

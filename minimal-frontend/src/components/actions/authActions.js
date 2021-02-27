@@ -9,7 +9,7 @@ const signinAction = (email, password) => async (dispatch, getState) =>{
     try {
         dispatch({type: SIGN_IN_REQUEST, payload: {email, password}})
 
-        const {data} = await axios.post('http://localhost:8000/api/user/signin', {email, password})
+        const {data} = await axios.post('/api/user/signin', {email, password})
     
         dispatch({type: SIGN_IN_SUCCESS, payload: data}) 
         const {signin: {userInfo}} = getState();

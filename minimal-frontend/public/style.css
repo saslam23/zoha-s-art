@@ -145,6 +145,11 @@ font-family: 'Comfortaa', cursive
    
 }
 
+.page-title{
+    text-align:center;
+    padding-bottom:7rem;
+}
+
 .thank-you-page-container-control{
     padding:5rem;
 }
@@ -188,22 +193,6 @@ font-family: 'Comfortaa', cursive
 }
 
 /*BUTTON*/
-.add-to-cart-button{
-    background-color:white;
-    border-color: #222121;
-    width:auto;
-    height:3rem;
-    border-radius: 2px;
-    border-width: 3px;
-    color:#0f0f0f;
-    font-size: 1.2rem;
-}
-
-.add-to-cart-button:hover{
-    height:2.5rem;
-    font-size: 1rem;
-    transition: all .2s ease-in-out;
-}
 
 .art-back-link{
     text-decoration: none;
@@ -218,9 +207,42 @@ font-family: 'Comfortaa', cursive
 }
 
 
+/*ART WORK DETAILS PAGE*/
+
+.product-description{
+    min-width: 300px;
+}
+
+
+.add-to-cart-button{
+    position: absolute;
+    top:60%;
+    background-color:white;
+    border-color: #222121;
+    min-width:100px;
+    height:3rem;
+    border-radius: 2px;
+    border-width: 2px;
+    color:#0f0f0f;
+    font-size: .8rem;
+}
+
+.add-to-cart-button:hover{
+    opacity: .6;
+    transition: all .1s ease-in-out;
+}
+
 .details-screen-image{
     height: 450px;
     width:450px;
+}
+
+.art-details-name{
+    font-size:2rem;
+}
+
+.art-details-size{
+    min-width:100px;
 }
 
 /*IN STOCK STATUS*/
@@ -249,7 +271,7 @@ li{
 .proceed-to-checkout-box{
     border: black solid 1px;
     height: 100%;
-    width:100%;
+    min-width: 150px;
 }
 
 .checkout-button{
@@ -258,7 +280,7 @@ li{
     margin-left:1.5rem;
     background-color:white;
     border-color: #222121;
-    width:65%;
+    min-width:100px;
     height:3rem;
     border-radius: 2px;
     border-width: 2px;
@@ -332,4 +354,159 @@ li{
 
 .stripe-button-el{
    display:none;
+}
+
+
+/*PHOTOS*/
+
+.left-photo-card-layout{
+    display:flex;
+    flex-direction:row;
+    flex-wrap:wrap;
+    justify-content: space-evenly;
+}
+
+.photo-left-caption{
+    max-width: 650px;
+    margin-top:12rem;
+}
+
+.photo-right-caption{
+    max-width: 650px;
+    margin-top:12rem;
+}
+
+.right-photo-card-layout{
+    display:flex;
+    flex-direction:row-reverse;
+    flex-wrap:wrap;
+    justify-content: space-evenly;
+}
+
+.photo-images{
+    width:500px;
+    height:500px;
+}
+
+@media only screen and (max-width:1680px){
+    .photo-left-caption{
+        margin-top:3rem;
+        padding-bottom: 2rem;
+    }
+    
+    .photo-right-caption{
+        margin-top:3rem;
+        padding-bottom: 2rem;
+    }
+}
+
+
+@media only screen and (max-width:1350px){
+    .nav-link.open{
+        transform: translateY(1rem);
+        transition: all .5s ease-in-out;
+       }
+}
+
+@media only screen and (max-width:1338px){
+    .nav-link.open{
+        transform: translateY(1rem);
+        transition: all .5s ease-in-out;
+       }
+
+    .add-to-cart-button{
+        position: absolute;
+        top:100%;
+        background-color:white;
+        border-color: #222121;
+        min-width:100px;
+        height:3rem;
+        border-radius: 2px;
+        border-width: 2px;
+        color:#0f0f0f;
+        font-size: .8rem;
+    }
+    .art-details-name{
+        font-size:1.5rem;
+        min-width: 100px;
+    }
+}
+
+
+@media only screen and (max-width:1100px){
+    .nav-link.open{
+        transform: translateY(-6rem);
+        transition: all .5s ease-in-out;
+       }
+}
+
+@media only screen and (max-width:749px){
+    .title{
+        font-size: 4rem;
+    }
+}
+
+@media only screen and (max-width:711px){
+    .navbar{
+        left:-20%;
+    }
+
+    .nav-link.open{
+        transform: translateY(-4rem);
+        transition: all .5s ease-in-out;
+       }
+
+    .photo-images{
+        width:300px;
+        height:300px;
+    }
+
+    .photo-left-caption{
+        margin-top:3rem;
+        padding-bottom: 2rem;
+        min-width:300px;
+    }
+    
+    .photo-right-caption{
+        margin-top:3rem;
+        padding-bottom: 2rem;
+        min-width:300px;
+    }
+}
+
+@media only screen and (max-width:767px){
+  
+.proceed-to-checkout-box{
+    border: black solid 1px;
+    height: 20vh;
+    min-width: 150px;
+}
+
+.checkout-button{
+    position: absolute;
+    bottom:2%;
+    margin-left:2.5rem;
+    background-color:white;
+    border-color: #222121;
+    min-width:100px;
+    height:3rem;
+    border-radius: 2px;
+    border-width: 2px;
+    color:#0f0f0f;
+    font-size: .8rem;
+}
+}
+
+
+@media only screen and (max-width:703px){
+    .page-title{
+        text-align:center;
+        padding-bottom:7rem;
+    }
+}
+
+@media only screen and (max-width:500px){
+    .title{
+        font-size: 3rem;
+    }
 }

@@ -15,7 +15,7 @@ app.use(fileUpload());
 const PORT = process.env.PORT || 8000;
 const uri = process.env.ATLAS_URI
 
-mongoose.connect(ATLAS_URI, {useNewUrlParser:true, useUnifiedTopology: true});
+mongoose.connect(uri, {useNewUrlParser:true, useUnifiedTopology: true});
 
 const productRouter = require('./routes/productRoutes');
 const userRouter = require('./routes/userRoutes');

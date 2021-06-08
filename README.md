@@ -11,6 +11,7 @@ Follow the process of standard ecommerce and it will direct you to a stripe paym
 Once done checking out, you will be redirected to a confirmation page for your order.
 
 ADMIN PANEL
+
 You can go to the admin panel using /admin on the website
 Click on demo login to log you into the custom content management system.
 In there, you are able to add new products, edit existing products as well as add photos to the site's photo gallery section.
